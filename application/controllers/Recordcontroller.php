@@ -1,0 +1,32 @@
+<?php
+class Recordcontroller extends CI_Controller {
+     
+	public function index()
+	{
+		$this->load->view('welcome_message');
+	}
+
+	public function getRecordData()
+	{
+		$this->load->model('Recordmodel');
+		$vehicle_id = 'SPBU1002';
+		$height = $this->input->get('height');
+		$latitude = $this->input->get('latitude');
+		$longitude = $this->input->get('longitude');
+		$altitude = $this->input->get('altitude');
+		$timestamp = date("Y-m-d h:i:s");
+
+		$data = array(
+			'vehicle_id' => $vehicle_id,
+			'liquid_level' => $height,
+			'latitude' => $latitude,
+			'longitude' => $longitude,
+			'altitude' => $altitude,
+			'timestamp' => $timestamp,
+		 );
+
+		$this->Recordmodel->insertRecordData($data);
+		echo "Success gan";
+		# code...
+	}
+}
