@@ -9,11 +9,11 @@ class Recordcontroller extends CI_Controller {
 	public function getRecordData()
 	{
 		$this->load->model('Recordmodel');
-		$vehicle_id = 'SPBU1002';
+		$vehicle_id = $this->input->get('vehicle_id');
 		$height = $this->input->get('height');
 		$latitude = $this->input->get('latitude');
 		$longitude = $this->input->get('longitude');
-		$altitude = $this->input->get('altitude');
+		$altitude = 0;
 		$timestamp = date("Y-m-d h:i:s");
 
 		$data = array(
@@ -26,8 +26,6 @@ class Recordcontroller extends CI_Controller {
 		 );
 
 		$this->Recordmodel->insertRecordData($data);
-		echo "Success gan";
-		# code...
 	}
 
 	public function postRecordData()
@@ -50,6 +48,5 @@ class Recordcontroller extends CI_Controller {
 		 );
 
 		$this->Recordmodel->insertRecordData($data);
-		echo "Success gan";
 	}
 }
