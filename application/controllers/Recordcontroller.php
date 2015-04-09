@@ -17,6 +17,7 @@ class Recordcontroller extends CI_Controller {
 		$timestamp = date("Y-m-d h:i:s");
 
 		$data = array(
+			'id' => 0,
 			'vehicle_id' => $vehicle_id,
 			'liquid_level' => $height,
 			'latitude' => $latitude,

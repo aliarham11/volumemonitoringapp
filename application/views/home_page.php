@@ -18,34 +18,53 @@
 
 </body>
 <script>
-// create a map in the "map" div, set the view to a given place and zoom
+
 var map = L.map('map').setView([-7.2804277, 112.7963764], 13);
 
-// add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 
 $( document ).ready(function() {
-    console.log( "ready!" );
-    	$.getJSON( "<?php echo base_url();?>index.php/monitoringcontroller/getvehiclestatus", 
-    	function( data ) {
-    		console.log(data);
-    		$.each( data, function( key, val ) {
-    			var status = data[key].vehicle_name + " : " + data[key][2]+ "% Fuel.";
-    			if(data[key][2] < 95)
-    				status += "<br /><font color=\'red\''>Carefull, " + data[key].vehicle_name + "'s tank is probably leaking..!</font>"
+	var markers = [];
+	var marker= null;
+	(function showStatus(){
+		
+		$.each(markers, function(key, val){
+			map.removeLayer(markers[key]);
+		});
 
-    			L.marker([data[key].latitude, data[key].longitude]).addTo(map)
-				.bindPopup(status)
-				.openPopup();
+		markers.length = 0;
 
-  			});
- 		
- 		}
- 	);
+		$.getJSON( "<?php echo base_url();?>index.php/monitoringcontroller/getvehiclestatus", 
+    		function( data ) {
+    			$.each( data, function( key, val ) {
+    				var status = data[key].vehicle_name + " : " + data[key][2]+ "% Fuel.";
+    				if(data[key][2] < 95)
+    					status += "<br /><font color=\'red\''>Carefull, " + data[key].vehicle_name + "'s tank is probably leaking..!</font>";
 
+    				if(data[key].latitude == 0 || data[key].longitude == 0)
+    				{
+    					status += "<br /><font color=\'blue\''>\"Unkown Location\"</font>";
+    					marker = L.marker([-7.2796025, 112.7953905]).addTo(map)
+						.bindPopup(status)
+						.openPopup();
+    				}	
+    				else 	
+    				{	
+    					marker = L.marker([data[key].latitude, data[key].longitude]).addTo(map)
+						.bindPopup(status)
+						.openPopup();
+					}
+					markers.push(marker);
+
+  				});
+ 				setTimeout(showStatus, 5000);
+ 				
+ 			}
+ 		);
+	}());
 });
 
 
