@@ -24,7 +24,4 @@
 	<script src="<?php echo base_url();?>assets/js2/jquery.sparkline.js"></script>
 	<script src="<?php echo base_url();?>assets/js/common-scripts.js"></script>
 
-
-	
-
 </head>
