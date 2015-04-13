@@ -8,13 +8,72 @@
 
 <body>
 
-<div id="container">
-	<h1>Tank Volume Monitoring System</h1>
 
+<section id="container">
+	<header class="header black-bg">
+		<div class="sidebar-toggle-box">
+			<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+					
+			</div>
+		</div>
+
+		<a href="<?php echo base_url();?>" class="logo">
+			<b><font color="blue">Tank Volume Monitoring System</font></b>
+		</a>
+		
+	</header>
+	<aside>
+          <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered">
+              	  	<a href="profile.html">
+              	  		<img src="assets/img/pp.jpg" class="img-circle" width="60">	
+              	  	</a>
+              	  </p>
+              	  <h5 class="centered">Yoga Pratama Aliarham</h5>
+              	  <h5 class="centered">5111100018</h5>
+              	  	
+                  <li class="mt">
+                      <a href="<?php echo base_url();?>">
+                          <i class="fa fa-desktop"></i>
+                          <span>Home Page</span>
+                      </a>
+                  </li>
+
+                  <li class="mt">
+                      <a href="<?php echo base_url();?>">
+                          <i class="fa fa-book"></i>
+                          <span>Register Vehicle</span>
+                      </a>
+                  </li>
+
+                  <li class="mt">
+                      <a href="<?php echo base_url();?>">
+                          <i class="fa fa-bar-chart-o"></i>
+                          <span>Show History</span>
+                      </a>
+                  </li>
+
+                  
+
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+
+<section id="main-content">
 	<div id="map">
 	</div>
+</section>
+<!-- 
+	<div id="map">
+	</div>
+ -->
+</section>
 
-</div>
 
 </body>
 <script>
