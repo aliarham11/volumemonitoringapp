@@ -10,16 +10,22 @@ class Recordmodel extends CI_Model {
     public function insertRecordData($data)
     {
 
-    	// $data['id'] = $this->autoIncrementId()[0]['id'] + 1;
-    	$data['id'] = 99;
+    	$data['id'] = $this->autoIncrementId()->id + 1;
+    	// echo $data['id'];
+        // exit();
+        // // $data['id'] = 99;
     	$this->db->insert('track_record',$data);
+        $is_going = array('is_going' => 1);
+        $this->db->where('vehicle_id',$data['vehicle_id']);
+        $this->db->update('initial_data',$is_going);
     	return;
     }
 
     public function autoIncrementId()
     {
     	$this->db->select_max('id');
-    	return $this->db->get('track_record')->result_array();
+        $id = $this->db->get('track_record')->result()[0];
+    	return $id;
     }
 
 }

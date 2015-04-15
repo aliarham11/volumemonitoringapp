@@ -5,24 +5,50 @@ class Monitoringcontroller extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('head');
+		$this->load->model('Registermodel');
+		$data['list_vid'] = $this->Registermodel->getVid();
+		$this->load->view('head',$data);
 		$this->load->view('home_page');
 	}
 
 
+	public function historyPage()
+	{
+		$this->load->model('Registermodel');
+		$data['list_vid'] = $this->Registermodel->getVid();
+		$data['list_tracked_vid'] = $this->Registermodel->getVid(1);
+		$this->load->view('head',$data);
+		$this->load->view('history_page', $data);
+		# code...
+	}
+
 	public function getVehicleStatus($id=null)
 	{
 		$this->load->model('Monitoringmodel');
-
-		$data = $this->calculateVolume();
+		$query = $this->Monitoringmodel->getVehicleData();
+		$data = $this->calculateVolume($query);
 		echo json_encode($data);
 
 	}
 
-	public function calculateVolume()
+	public function showHistory()
 	{
 		$this->load->model('Monitoringmodel');
-		$query = $this->Monitoringmodel->getVehicleData();
+		$vid = $this->input->get('vid');
+		$data = array(
+			'vehicle_master.vehicle_id' => $vid,
+		);
+		$query = $this->Monitoringmodel->getHistory($data);
+		$data = $this->calculateVolume($query);
+		echo json_encode($data);
+
+		# code...
+	}
+
+	public function calculateVolume($query)
+	{
+		$this->load->model('Monitoringmodel');
+		
 		$i=0;
 		foreach ($query as $row) 
 		{

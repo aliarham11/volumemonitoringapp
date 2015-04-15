@@ -10,10 +10,13 @@ class Monitoringmodel extends CI_Model {
     public function getVehicleData()
     {
     	$sql = "select * from
-				(
-				SELECT `track_record`.`vehicle_id`, `vehicle_name`, `tank_type`, `diameter`, `longsize`, `latitude`, `longitude`, `liquid_level`, `timestamp` FROM `track_record` JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id` ORDER BY `timestamp` DESC
-				) temp
-				group by `vehicle_id`";
+                (
+                SELECT `track_record`.`vehicle_id`, `vehicle_name`, `tank_type`, `diameter`, `longsize`, `latitude`, `longitude`, `liquid_level`, `timestamp` 
+                FROM `track_record` JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id` 
+                 ORDER BY `timestamp` DESC
+                ) temp, `initial_data`
+                where `initial_data`.`is_arrive` = 0 and temp.vehicle_id = `initial_data`.`vehicle_id`
+                group by temp.`vehicle_id`";
     	$query = $this->db->query($sql);
     	return $query->result_array();
     }
@@ -23,6 +26,17 @@ class Monitoringmodel extends CI_Model {
     	$this->db->select('initial_volume');
     	$query = $this->db->get_where('initial_data',$id,1);
     	return $query->result_array();
+    }
+
+    public function getHistory($vid)
+    {
+        $this->db->select('vehicle_name, latitude,longitude,liquid_level,timestamp,diameter,longsize,tank_type,vehicle_master.vehicle_id');
+        $this->db->from('track_record');
+        $this->db->join('vehicle_master','track_record.vehicle_id = vehicle_master.vehicle_id');
+        $this->db->where($vid);
+        $query = $this->db->get();
+        return $query->result_array();
+        # code...
     }
 
 }
