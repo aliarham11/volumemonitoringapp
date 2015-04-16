@@ -15,7 +15,7 @@ class Registermodel extends CI_Model {
 
     public function insertInitialData($data)
     {
-        $data['id'] = $this->autoIncrementId()->id + 1;
+        $data['id'] = $this->autoIncrementId() + 1;
     	$this->db->insert('initial_data',$data);
         return;
     }
@@ -57,8 +57,8 @@ class Registermodel extends CI_Model {
     public function autoIncrementId()
     {
         $this->db->select_max('id');
-        $id = $this->db->get('initial_data')->result()[0];
-        return $id;
+        $id = $this->db->get('initial_data')->result_array();
+        return $id['0']['id'];
     }
 
 
