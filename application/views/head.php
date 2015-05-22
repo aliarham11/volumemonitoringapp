@@ -65,6 +65,13 @@
                   </li>
 
                   <li class="mt">
+                      <a href="<?php echo base_url();?>index.php/registercontroller/formupdatevehicle">
+                          <i class="fa fa-book"></i>
+                          <span>Update Existing Vehicle</span>
+                      </a>
+                  </li>
+
+                  <li class="mt">
                       <a href="" data-toggle="modal" data-target="#arrival">
                           <i class="fa fa-book"></i>
                           <span>Arrival</span>

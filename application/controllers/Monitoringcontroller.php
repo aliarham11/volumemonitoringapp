@@ -6,7 +6,7 @@ class Monitoringcontroller extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('Registermodel');
-		$data['list_vid'] = $this->Registermodel->getVid();
+		$data['list_vid'] = $this->Registermodel->getVid(null,false,true);
 		$this->load->view('head',$data);
 		$this->load->view('home_page');
 	}
@@ -15,8 +15,8 @@ class Monitoringcontroller extends CI_Controller {
 	public function historyPage()
 	{
 		$this->load->model('Registermodel');
-		$data['list_vid'] = $this->Registermodel->getVid();
-		$data['list_tracked_vid'] = $this->Registermodel->getVid(1);
+		$data['list_vid'] = $this->Registermodel->getVid(null,false,true);
+		$data['list_tracked_vid'] = $this->Registermodel->getVid(1,null);
 		$this->load->view('head',$data);
 		$this->load->view('history_page', $data);
 		# code...
@@ -29,6 +29,14 @@ class Monitoringcontroller extends CI_Controller {
 		$data = $this->calculateVolume($query);
 		echo json_encode($data);
 
+	}
+
+	public function getListVehicle()
+	{
+		$this->load->model('Registermodel');
+		$data = $this->Registermodel->getVname();
+		echo json_encode($data);
+		# code...
 	}
 
 	public function showHistory()

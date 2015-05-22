@@ -10,12 +10,14 @@ class Monitoringmodel extends CI_Model {
     public function getVehicleData()
     {
     	$sql = "select * from
-                (
+               (
                 SELECT `track_record`.`vehicle_id`, `vehicle_name`, `tank_type`, `diameter`, `longsize`, `latitude`, `longitude`, `liquid_level`, `timestamp` 
-                FROM `track_record` JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id` 
-                 ORDER BY `timestamp` DESC
+                FROM `track_record` 
+                JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id`
+                JOIn `initial_data` ON `initial_data`.`vehicle_id`=`track_record`.`vehicle_id`
+                Where `is_arrive` = 0
+                ORDER BY `track_record`.`id` DESC
                 ) temp, `initial_data`
-                where `initial_data`.`is_arrive` = 0 and temp.vehicle_id = `initial_data`.`vehicle_id`
                 group by temp.`vehicle_id`";
     	$query = $this->db->query($sql);
     	return $query->result_array();

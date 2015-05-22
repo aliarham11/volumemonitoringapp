@@ -10,11 +10,16 @@ class Recordcontroller extends CI_Controller {
 	{
 		$this->load->model('Recordmodel');
 		$vehicle_id = $this->input->get('vehicle_id');
-		$height = $this->input->get('height');
+		// $tampHeight = $this->input->get('height');
 		$latitude = $this->input->get('latitude');
 		$longitude = $this->input->get('longitude');
 		$altitude = 0;
 		$timestamp = date("Y-m-d h:i:s");
+		$tempHeight = $this->Recordmodel->getTankHeight($vehicle_id);
+		// var_dump($tempHeight);
+		// exit();
+		$height = $tempHeight['0']->tank_height - $this->input->get('height');
+
 
 		$data = array(
 			'id' => 0,

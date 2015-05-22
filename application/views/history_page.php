@@ -13,19 +13,19 @@
 	<div id="map">
 	</div>
 <section id="wrapper">
-	<h4 style="float:left;margin-left:10px">Select Vehicle ID : </h4>
-  	 <div class="col-sm-6">
-	        <select class="form-control" name="vid" id="vehicle_id">
-	        <option> --- </option>
-				<?php 
-				foreach ($list_tracked_vid as $key): 
-				 	echo "<option>".$key['vehicle_id']."</option>";
-				 	endforeach;
-				?>
+	 <div style="width:500px;position:fixed;bottom:0px">
+		<h4 style="float:left;margin-left:10px;color:black">Select Vehicle ID : </h4>
+	  	 <div class="col-sm-6" >
+		    <select class="form-control" name="vid" id="vehicle_id">
+		        <option> --- </option>
+					<?php 
+					foreach ($list_tracked_vid as $key): 
+					 	echo "<option>".$key['vehicle_id']."</option>";
+					 	endforeach;
+					?>
 			</select>
-	      </div>
-
-
+		</div>
+	</div>
 </section>
 </section>
 

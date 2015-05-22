@@ -1,17 +1,24 @@
 <section id="main-content">
 	<section class="wrapper">
-		<h3><i class="fa fa-angle-right"></i> Register Vehicle</h3>
+		<h3><i class="fa fa-angle-right"></i> Update Vehicle</h3>
 		<div class="form-panel">
 			<!-- <form class="form-horizontal style-form" method="post"> -->
 			<div class="form-horizontal style-form">
-			<?php echo form_open('registercontroller'); ?>
+			<?php echo form_open('registercontroller/formupdatevehicle'); ?>
 				<div class="form-group">
-	              <label class="col-sm-2 col-sm-2 control-label">Vehicle ID</label>
-	              <div class="col-sm-10">
-	                	<input type="text" class="form-control" name="vehicle_id" value="<?php echo set_value('vehicle_id'); ?>">
-	              	   	<label class="control-label"><font color="red"><?php echo form_error('vehicle_id'); ?></font></label>
-	              </div>
-
+	              	<div class="col-sm-10">
+	                	<h4 style="float:left;margin-left:10px;color:black">Select ID : </h4>
+					  	 <div class="col-sm-6" >
+						    <select class="form-control" name="vid" id="vid">
+						       <option> --- </option>
+								<?php 
+								foreach ($list_vid_update as $key): 
+								 	echo "<option value='".$key['vehicle_id']."''>".$key['vehicle_id']."</option>";
+								 endforeach;
+								?>
+							</select>
+						</div>
+	            	</div>
 	          	</div>
 	          	<div class="form-group">
 	              <label class="col-sm-2 col-sm-2 control-label">Vehicle Name</label>
@@ -58,7 +65,7 @@
 	              </div>
 	          	</div>
 	          	<br />
-	          	<button type="submit" class="btn btn-theme" >Register</button>
+	          	<button name="submit_btn" type="submit" class="btn btn-theme" >Register</button>
 	          	</form>
 				
 			</div>
@@ -67,3 +74,44 @@
 </section>
 </section>
 </body>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('[name="submit_btn"]').prop( "disabled", true );
+		$('#vid').change(function() {
+			var url = "<?php echo base_url();?>index.php/registercontroller/retrievevehicledata/";
+			
+			if($('#vid').val() != "---")
+			{
+				$('[name="submit_btn"]').prop( "disabled", false );
+				url += $('#vid').val();
+				$.getJSON(url,function(data){
+					console.log(data[0]);
+					$('[name="vehicle_name"]').val(data[0].vehicle_name);
+					$('[name="tank_type"]').val(data[0].tank_type);
+					$('[name="diameter"]').val(data[0].diameter);
+					$('[name="longsize"]').val(data[0].longsize);
+					$('[name="tank_height"]').val(data[0].tank_height);
+					$('[name="initial_volume"]').val(data[0].initial_volume);
+
+				});
+
+			}
+			else
+			{
+				$('[name="vehicle_name"]').val('');
+				$('[name="tank_type"]').val('Tube');
+				$('[name="diameter"]').val('');
+				$('[name="longsize"]').val('');
+				$('[name="tank_height"]').val('');
+				$('[name="initial_volume"]').val('');
+				$('[name="submit_btn"]').prop( "disabled", true );
+			}
+		});
+
+	});
+
+
+
+</script>
+</html>

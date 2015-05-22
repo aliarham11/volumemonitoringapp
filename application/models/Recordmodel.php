@@ -15,10 +15,16 @@ class Recordmodel extends CI_Model {
         // exit();
         // // $data['id'] = 99;
     	$this->db->insert('track_record',$data);
-        $is_going = array('is_going' => 1);
+        $is_going = array('is_going' => 1, 'is_arrive' => 0);
         $this->db->where('vehicle_id',$data['vehicle_id']);
         $this->db->update('initial_data',$is_going);
     	return;
+    }
+
+    public function getTankHeight($vid)
+    {
+        $query = $this->db->get_where('vehicle_master', array('vehicle_id' => $vid));
+        return $query->result();
     }
 
     public function autoIncrementId()
