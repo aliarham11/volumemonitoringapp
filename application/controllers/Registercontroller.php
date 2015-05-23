@@ -5,6 +5,11 @@ class Registercontroller extends CI_Controller {
      
 	public function index()
 	{
+		$this->load->library('session');
+		$user = $this->session->userdata('username'); 
+		if($user == null)
+			redirect('logincontroller','refresh');
+		
 		$this->load->model('Registermodel');
 		$data['list_vid'] = $this->Registermodel->getVid(null,false,true);
 

@@ -15,7 +15,7 @@ class Monitoringmodel extends CI_Model {
                 FROM `track_record` 
                 JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id`
                 JOIn `initial_data` ON `initial_data`.`vehicle_id`=`track_record`.`vehicle_id`
-                Where `is_arrive` = 0
+                Where `is_arrive` = 0 AND `is_going` = 1
                 ORDER BY `track_record`.`id` DESC
                 ) temp, `initial_data`
                 group by temp.`vehicle_id`";

@@ -37,7 +37,12 @@
 		<a href="<?php echo base_url();?>" class="logo">
 			<b><font color="blue">Tank Volume Monitoring System</font></b>
 		</a>
-		
+
+		<div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="<?php echo base_url();?>index.php/logincontroller/logout">Logout</a></li>
+            	</ul>
+            </div>		
 	</header>
 	<aside>
           <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
@@ -84,6 +89,8 @@
                           <span>Show History</span>
                       </a>
                   </li>
+
+
               </ul>
           </div>
       </aside>
