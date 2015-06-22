@@ -28,6 +28,13 @@
 	              </div>
 	          	</div>
 	          	<div class="form-group">
+	              <label class="col-sm-2 col-sm-2 control-label">Driver Contact</label>
+	              <div class="col-sm-10">
+	                  <input type="text" class="form-control" name="driver_contact" value="<?php echo set_value('driver_contact'); ?>" >
+	                  <label class="control-label"><font color="red"><?php echo form_error('driver_contact'); ?></font></label>
+	              </div>
+	             </div>
+	          	<div class="form-group">
 	              <label class="col-sm-2 col-sm-2 control-label">Tank Type</label>
 	              <div class="col-sm-10">
 	                  <select class="form-controll" name="tank_type">
@@ -88,6 +95,7 @@
 				$.getJSON(url,function(data){
 					console.log(data[0]);
 					$('[name="vehicle_name"]').val(data[0].vehicle_name);
+					$('[name="driver_contact"]').val(data[0].driver_contact);
 					$('[name="tank_type"]').val(data[0].tank_type);
 					$('[name="diameter"]').val(data[0].diameter);
 					$('[name="longsize"]').val(data[0].longsize);
@@ -100,6 +108,7 @@
 			else
 			{
 				$('[name="vehicle_name"]').val('');
+				$('[name="driver_contact"]').val('');
 				$('[name="tank_type"]').val('Tube');
 				$('[name="diameter"]').val('');
 				$('[name="longsize"]').val('');

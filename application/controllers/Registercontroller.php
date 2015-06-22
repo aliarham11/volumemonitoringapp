@@ -19,6 +19,7 @@ class Registercontroller extends CI_Controller {
 
 		$this->form_validation->set_rules('vehicle_id', 'Vehicle Id', 'callback_checkExist');
 		$this->form_validation->set_rules('vehicle_name', 'Vehicle Name', 'required');
+		$this->form_validation->set_rules('driver_contact', 'Driver Contact', 'required');
 		$this->form_validation->set_rules('diameter', 'Diameter', 'required');
 		$this->form_validation->set_rules('longsize', 'Longsize', 'required');
 		$this->form_validation->set_rules('tank_height', 'Tank Height', 'required');
@@ -50,6 +51,7 @@ class Registercontroller extends CI_Controller {
 
 		// $this->form_validation->set_rules('vehicle_id', 'Vehicle Id', 'callback_checkExist');
 		$this->form_validation->set_rules('vehicle_name', 'Vehicle Name', 'required');
+		$this->form_validation->set_rules('driver_contact', 'Driver Contact', 'required');
 		$this->form_validation->set_rules('diameter', 'Diameter', 'required');
 		$this->form_validation->set_rules('longsize', 'Longsize', 'required');
 		$this->form_validation->set_rules('tank_height', 'Tank Height', 'required');
@@ -74,6 +76,7 @@ class Registercontroller extends CI_Controller {
 
 		$vehicle_id = $this->input->post('vehicle_id');
 		$vehicle_name = $this->input->post('vehicle_name');
+		$driver_contact = $this->input->post('driver_contact');
 		$tank_type = $this->input->post('tank_type');
 		$diameter = $this->input->post('diameter');
 		$longsize = $this->input->post('longsize');
@@ -83,6 +86,7 @@ class Registercontroller extends CI_Controller {
 		$data_master = array(
 			'vehicle_id' => $vehicle_id,
 			'vehicle_name' => $vehicle_name,
+			'driver_contact' => $driver_contact,
 			'tank_type' => $tank_type,
 			'diameter' => $diameter,
 			'longsize' => $longsize,
@@ -109,6 +113,7 @@ class Registercontroller extends CI_Controller {
 
 		$vehicle_id = $this->input->post('vid');
 		$vehicle_name = $this->input->post('vehicle_name');
+		$driver_contact = $this->input->post('driver_contact');
 		$tank_type = $this->input->post('tank_type');
 		$diameter = $this->input->post('diameter');
 		$longsize = $this->input->post('longsize');
@@ -118,6 +123,7 @@ class Registercontroller extends CI_Controller {
 		$data_master = array(
 			'vehicle_id' => $vehicle_id,
 			'vehicle_name' => $vehicle_name,
+			'driver_contact' => $driver_contact,
 			'tank_type' => $tank_type,
 			'diameter' => $diameter,
 			'longsize' => $longsize,

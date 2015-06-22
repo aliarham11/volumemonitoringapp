@@ -52,7 +52,7 @@ $( document ).ready(function() {
     			$.each( data, function( key, val ) {
     				var status = data[key].vehicle_name + " : " + data[key][2]+ "% Fuel.";
     				if(data[key][2] < 95)
-    					status += "<br /><font color=\'red\''>Carefull, " + data[key].vehicle_name + "'s tank is probably leaking..!</font>";
+    					status += "<br /><font color=\'red\''>Carefull, " + data[key].vehicle_name + "'s tank is probably leaking..!</font><br /><font color=\'red\''> Contact : "+data[key].driver_contact+"</font>";
 
     				if(data[key].latitude == 0 || data[key].longitude == 0)
     				{

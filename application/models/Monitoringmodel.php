@@ -11,7 +11,7 @@ class Monitoringmodel extends CI_Model {
     {
     	$sql = "select * from
                (
-                SELECT `track_record`.`vehicle_id`, `vehicle_name`, `tank_type`, `diameter`, `longsize`, `latitude`, `longitude`, `liquid_level`, `timestamp` 
+                SELECT `track_record`.`vehicle_id`, `vehicle_name`, `tank_type`,`driver_contact`, `diameter`, `longsize`, `latitude`, `longitude`, `liquid_level`, `timestamp` 
                 FROM `track_record` 
                 JOIN `vehicle_master` ON `vehicle_master`.`vehicle_id`=`track_record`.`vehicle_id`
                 JOIn `initial_data` ON `initial_data`.`vehicle_id`=`track_record`.`vehicle_id`

@@ -21,6 +21,13 @@
 	              </div>
 	          	</div>
 	          	<div class="form-group">
+	              <label class="col-sm-2 col-sm-2 control-label">Driver Contact</label>
+	              <div class="col-sm-10">
+	                  <input type="text" class="form-control" name="driver_contact" value="<?php echo set_value('driver_contact'); ?>" >
+	                  <label class="control-label"><font color="red"><?php echo form_error('driver_contact'); ?></font></label>
+	              </div>
+	          	</div>
+	          	<div class="form-group">
 	              <label class="col-sm-2 col-sm-2 control-label">Tank Type</label>
 	              <div class="col-sm-10">
 	                  <select class="form-controll" name="tank_type">
